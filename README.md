@@ -23,19 +23,13 @@ Dataset dan pelabelan: Scraping dari ulasan Google Play Store Access by KAI deng
 
 ## Hasil Eksperimen
 
-
+<img width="1389" height="590" alt="Image" src="https://github.com/user-attachments/assets/7e3f19cc-368c-45ce-84a4-2837897647bf" />
 
 ### Mengapa SVM + IndoBERT?
-Selain memenangkan metrik evaluasi F1-Score secara telak, model SVM dipilih sebagai arsitektur yang paling direkomendasikan karena:
-1. **Beban Komputasi Rendah:** Tidak membutuhkan infrastruktur GPU yang berat saat di-*deploy* ke dalam sistem.
-2. **Kecepatan Inferensi:** Mampu memproses lonjakan antrean (*bottleneck*) teks ulasan saat aplikasi KAI mengalami *down* secara *real-time* dengan jauh lebih cepat dibandingkan prediksi sekuensial Bi-LSTM.
-3. **Stabilitas:** Menghasilkan simpangan baku (± 0.88%) yang sangat kecil selama proses *10-Fold Cross Validation*.
 
----
+Model **SVM + IndoBERT** ditetapkan sebagai arsitektur *State-of-the-Art* (SOTA) dan paling direkomendasikan dalam eksperimen ini berdasarkan keunggulan mutlak pada metrik evaluasi:
 
-## 🛠️ Cara Menjalankan Proyek
+1. **Capaian F1-Macro Tertinggi (96.85%):** Sinergi ini terbukti paling tanggap dan seimbang dalam membedakan keluhan server yang sesungguhnya dari ulasan umum. Angka ini mengalahkan seluruh skenario pemodelan *Deep Learning* (Bi-LSTM) maupun representasi *sub-word* (FastText).
+2. **Nilai ROC-AUC yang Impresif (0.9327):** Skor ini menunjukkan probabilitas diskriminasi kelas yang sangat baik. Model sangat teliti dan tangguh sehingga meminimalisir kemungkinan model salah menebak (*False Positive*) pada berbagai rentang batas probabilitas (*threshold*).
 
-1. **Clone Repositori:**
-```bash
-   git clone [https://github.com/username-kamu/nama-repo.git](https://github.com/username-kamu/nama-repo.git)
-   cd nama-repo
+Kemampuan arsitektur *Transformer* pada IndoBERT dalam menangkap konteks kalimat secara utuh, dipadukan dengan efisiensi algoritma SVM dalam menemukan margin pemisah (*hyperplane*) yang optimal, menjadikannya solusi klasifikasi teks yang paling presisi untuk ulasan aplikasi Access by KAI.
